@@ -12,14 +12,13 @@
 	<insert id="create" parameterType="NoticeDTO">
 		INSERT INTO "TB_NOTICE"
 		VALUES (
-		DEFAULT,
-		#{boardTitle},
-		#{boardWriter},
-		#{boardContent},
-		NOW(),
-		0
+			DEFAULT,
+			#{boardTitle},
+			#{boardWriter},
+			#{boardContent},
+			NOW(),
+			0
 		)
-		
 	</insert>
 	
 
