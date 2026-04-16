@@ -11,9 +11,9 @@ public interface BoardMapper {
 	
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception;
 	
-	public void create();
+	public int create(BoardDTO boardDTO) throws Exception;
 	
-	public void update();
+	public int update(BoardDTO boardDTO) throws Exception;
 	
-	public void delete();
+	public int delete(BoardDTO boardDTO) throws Exception;
 }
