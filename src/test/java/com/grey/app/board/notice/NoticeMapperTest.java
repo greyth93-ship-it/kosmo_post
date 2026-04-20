@@ -9,8 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.grey.app.board.BoardDTO;
+import com.grey.app.pager.Pager;
+
+import lombok.extern.slf4j.Slf4j;
+
+
 
 @SpringBootTest
+@Slf4j
 class NoticeMapperTest {
 	
 	@Autowired
@@ -39,8 +45,14 @@ class NoticeMapperTest {
 	
 //	@Test
 //	void testList() throws Exception{
-//		List<BoardDTO> ar = noticeMapper.list();
-//		assertNotEquals(0, ar.size());
+//		Pager pager = new Pager();
+//		pager.setSearch("9");
+//		pager.makeStartNum();
+//		pager.setPage(1L);
+//		List<BoardDTO> ar = noticeMapper.list(pager);
+//		
+//		log.info("{}", ar);
+//		assertEquals(5, ar.size());
 //	}
 
 }

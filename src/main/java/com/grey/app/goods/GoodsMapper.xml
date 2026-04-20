@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.grey.app.goods.GoodsMapper">
+  
+  	<sql id="search_sql">
+  		WHERE
+			<choose>
+		  		<when test="kind == 'v2'">"GOODS_CONTENT"</when>
+		  		<when test="kind == 'v3'">"GOODS_CATEGORY"</when>
+		  		<otherwise>"GOODS_NAME"</otherwise>
+	  		</choose>
+	  Like concat('%',#{search},'%')
+  	</sql>
+  	
+  	<select id="getCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT("GOODS_NO") FROM "TB_GOODS"
+  		<include refid="search_sql"></include>
+  	</select>
+  
+  	<select id="list" resultType="GoodsDTO" parameterType="Pager">
+  		SELECT * FROM "TB_GOODS"
+  		<include refid="search_sql"></include>
+  		ORDER BY "GOODS_NO" DESC
+  		Limit #{perPage} OFFSET #{startNum}
+  		
+  		
+  	</select>
+  
+  	<insert id="create" parameterType="GoodsDTO" >
+  		INSERT INTO "TB_GOODS"
+		VALUES (
+			DEFAULT,
+			#{goodsName},
+			#{goodsContent},
+			#{goodsCategory},
+			#{goodsRate}
+		)
+  	
+  	</insert>
+  
+   <insert id="createFile" parameterType="GoodsDTO">
+   		INSERT INTO "TB_GOODSFILE"
+		VALUES (DEFAULT, #{fileName}, #{oriName}, #{goodsNo})
+	
+   </insert>
+  
+  
+  
+  
+  
+  
+  
+  
+  </mapper>

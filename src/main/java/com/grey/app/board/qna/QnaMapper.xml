@@ -5,11 +5,54 @@
   
 <mapper namespace="com.grey.app.board.qna.QnaMapper">
 	
-	<select id="list" resultType="QnaDTO">
-		SELECT * FROM "TB_QNA"
+	<sql id="search_sql">
+		WHERE
+			<choose>
+				<when test="kind == 'v2'">"BOARD_CONTENT"</when>
+				<when test="kind == 'v3'">"BOARD_WRITER"</when>
+				<otherwise>"BOARD_TITLE"</otherwise>
+			</choose>
+		LIKE concat('%',#{search},'%')
+	</sql>
+	
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT("BOARD_NUM") FROM "TB_QNA"
+		<include refid="search_sql"></include>
 	</select>
 	
-	<insert id="create" parameterType="QnaDTO">
+	<select id="list" resultType="QnaDTO" parameterType="Pager">
+		SELECT * FROM "TB_QNA"
+		<include refid="search_sql"></include>
+		ORDER BY "BOARD_NUM" DESC
+		LIMIT #{perPage} OFFSET #{startNum}
+	</select>
+	
+	<select id="detail" parameterType="QnaDTO" resultMap="resultDetail">
+		SELECT *
+		FROM "TB_QNA" q
+		LEFT JOIN "TB_QNAFILE" f
+		USING ("BOARD_NUM")
+		WHERE "BOARD_NUM"=#{boardNum}
+	</select>
+	
+	<resultMap type="QnaDTO" id="resultDetail">
+		<id column="BOARD_NUM" property="boardNum"/>
+		<result column="BOARD_TITLE" property="boardTitle"/>
+		<result column="BOARD_WRITER" property="boardWriter"/>
+		<result column="BOARD_CONTNET" property="boardContent"/>
+		<result column="BOARD_DATE" property="boardDate"/>
+		<result column="BOARD_HIT" property="boardHit"/>
+		<result column="BOARD_REF" property="boardRef"/>
+		<result column="BOARD_STEP" property="boardStep"/>
+		
+		<collection property="list" javaType="java.util.List" ofType="FileDTO">
+		<id column="FILE_NUM" property="fileNum"/>
+		<result column="FILE_NAME" property="fileName"/>
+		<result column="ORI_NAME" property="oriName"/>
+		</collection>
+	</resultMap>
+	
+	<insert id="create" parameterType="QnaDTO" useGeneratedKeys="true" keyProperty="boardNum">
 		INSERT INTO "TB_QNA"
 		VALUES (
 			default,
@@ -24,5 +67,47 @@
 		)
 	
 	</insert>
+	
+	<insert id="createFile" parameterType="QnaFileDTO">
+		INSERT INTO "TB_QNAFILE"
+		VALUES (DEFAULT, #{fileName}, #{oriName}, #{boardNum})
+	
+	</insert>
+	
+	
+	<update id="update" parameterType="QnaDTO">
+		UPDATE "TB_QNA"
+		SET "BOARD_TITLE"=#{boardTitle}, "BOARD_CONTENT"=#{boardContent}
+		WHERE "BOARD_NUM" = #{boardNum}
+	
+	</update>
+	
+	
+		<delete id="delete" parameterType="QnaDTO">
+  		DELETE FROM "TB_QNA"
+  		WHERE "BOARD_NUM"=#{boardNum}
+  	</delete>
+  	
+  	<delete id="fileDelete" parameterType="FileDTO">
+  		DELETE FROM "TB_QNAFILE"
+  		WHERE "FILE_NO"=#{fileNum}
+  	</delete>
+  	
+  	<delete id="fileDeleteFor" parameterType="java.util.List">
+  		DELETE FROM "TB_QNAFILE"
+  		WHERE "FILE_NO" IN
+  			<foreach item="item" index="index" collection="list"
+  				open="(" separator="," close=")"
+  			>
+  				#{item.fileNo}
+  			</foreach>
 
+  	</delete>
+	
+	
+	
+	
+	
+	
+	
 </mapper>
