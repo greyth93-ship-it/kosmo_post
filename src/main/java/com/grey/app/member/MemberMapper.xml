@@ -37,6 +37,7 @@
 	
 	<resultMap type="MemberDTO" id="detailResult">
 		<id column="USERNAME" property="username"/>
+		<result column="NAME" property="name"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="PHONE" property="phone"/>
 		<result column="EMAIL" property="email"/>

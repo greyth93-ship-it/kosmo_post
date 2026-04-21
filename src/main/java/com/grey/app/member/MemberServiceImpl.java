@@ -10,8 +10,6 @@ import com.grey.app.file.FileManager;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    
-
 	@Autowired
 	private MemberMapper memberMapper;
 	

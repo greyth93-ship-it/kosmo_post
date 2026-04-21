@@ -11,7 +11,7 @@ public class FileMappingConfig implements WebMvcConfigurer {
 		@Value("${app.upload.url}")
 		private String url;
 		
-		@Value("${app.upload.path}")
+		@Value("${app.upload.base}")
 		private String path;
 	
 		

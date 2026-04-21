@@ -10,49 +10,53 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/member/*")
+@Slf4j
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("join")
-	public void join() throws Exception {
+	@GetMapping("mypage")
+	public String mypage()throws Exception{
 		
+		return "member/mypage";
 	}
 	
+	
+	@GetMapping("join")
+	public void join()throws Exception{}
+	
 	@PostMapping("join")
-	public String join(MemberDTO memberDTO, @RequestParam("attach") MultipartFile attach) throws Exception {
+	public String join(MemberDTO memberDTO,@RequestParam("attach") MultipartFile attach)throws Exception{
 		int result = memberService.join(memberDTO, attach);
+		
 		
 		return "redirect:/";
 		
 	}
 	
 	@GetMapping("login")
-	public void login()throws Exception{
-		
-	}
-	
+	public void login()throws Exception{}
+
 	@PostMapping("login")
 	public String login(MemberDTO memberDTO, HttpSession session)throws Exception{
-		
 		memberDTO = memberService.detail(memberDTO);
-		
-		if (memberDTO != null) {
+		if(memberDTO != null) {
 			session.setAttribute("member", memberDTO);
 		}
-		return "redirect:/";
 		
+		
+		return "redirect:/";
 	}
 	
 	@GetMapping("logout")
-	public String logout(HttpSession session) throws Exception{
+	public String logout(HttpSession session)throws Exception{
 		session.invalidate();
-		
 		return "redirect:/";
 	}
-	
+
 }

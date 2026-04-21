@@ -107,7 +107,7 @@
                     	</div>
                     	
                     	<div>
-                    		<a href="./create">공지 등록</a>
+                    		<a href="./create">등록</a>
                     	</div>
                     	
                     </div>
