@@ -32,16 +32,18 @@ public class MemberServiceImpl implements MemberService {
 		// 이미지 하드 저장
 		if (file != null && !file.isEmpty()) {
 		
-		String fileName = fileManager.fileSave(name, file);
+			String fileName = fileManager.fileSave(name, file);
 		
-		}
 		//저장된 정보를 DB에 저장
 		
-		ProfileDTO  profileDTO = new ProfileDTO();
-		profileDTO.setFileName(name);
-		profileDTO.setOriName(name);
-		profileDTO.setUsername(memberDTO.getUsername());
-		result = memberMapper.addProfile(profileDTO);
+			ProfileDTO  profileDTO = new ProfileDTO();
+			profileDTO.setFileName(fileName);
+			profileDTO.setOriName(file.getOriginalFilename());
+			profileDTO.setUsername(memberDTO.getUsername());
+			result = memberMapper.addProfile(profileDTO);
+		
+		}
+		
 		
 		
 		return result;

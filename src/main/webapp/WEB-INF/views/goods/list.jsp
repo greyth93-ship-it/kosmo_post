@@ -132,6 +132,3 @@
 
 </body>
 </html>
-	<h1>List Page</h1>
-</body>
-</html>

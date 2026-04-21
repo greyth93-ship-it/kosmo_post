@@ -19,7 +19,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Create Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">상품 등록</h1>
                     
                     <div>
 	                    <form action="./create" method="post" enctype="multipart/form-data">
