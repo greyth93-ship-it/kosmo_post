@@ -3,29 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.grey.app.board.member.MemberMapper">
+<mapper namespace="com.grey.app.member.MemberMapper">
 	
 	<insert id="join" parameterType="MemberDTO">
 		INSERT INTO "TB_MEMBER"
 		VALUES (
 			#{username},
-			${name},
-			${password},
-			${phone},
-			${email},
-			${birth}
+			#{name},
+			#{password},
+			#{phone},
+			#{email},
+			#{birth}
 		)
 	</insert>
 	
 	<insert id="addProfile" parameterType="ProfileDTO">
-		INSERT INTO "TB_PROFILE"
+		INSERT INTO "TB_PROFILE" ("FILE_NAME", "ORI_NAME", "USERNAME")
 		VALUES (
-			default,
-			${fileName},
-			${oriName},
+			#{fileName},
+			#{oriName},
 			#{username}
 		)
 	</insert>
+	
+	<select id="detail" parameterType="MemberDTO" resultMap="detailResult">
+		SELECT *
+		FROM "TB_MEMBER" m
+			LEFT JOIN "TB_PROFILE" p
+			USING ("USERNAME")
+		WHERE "USERNAME" = #{username} 
+	
+	</select>
+	
+	<resultMap type="MemberDTO" id="detailResult">
+		<id column="USERNAME" property="username"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="PHONE" property="phone"/>
+		<result column="EMAIL" property="email"/>
+		<result column="Birth" property="birth"/>
+		
+		<association property="profileDTO" javaType="ProfileDTO">
+			<id column="FILE_NO" property="fileNo"/>
+			<result column="FILE_NAME" property="fileName"/>
+			<result column="ORI_NAME" property="oriName"/>
+		</association>
+	</resultMap>
 	
 
 </mapper>

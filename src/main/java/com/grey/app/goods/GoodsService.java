@@ -34,6 +34,10 @@ public class GoodsService {
 		return goodsMapper.list(pager);
 	}
 
+	public GoodsDTO detail(GoodsDTO goodsDTO) throws Exception {
+		
+		return goodsMapper.detail(goodsDTO);
+	}
 
 	
 	public int create(GoodsDTO goodsDTO, MultipartFile [] attach) throws Exception {

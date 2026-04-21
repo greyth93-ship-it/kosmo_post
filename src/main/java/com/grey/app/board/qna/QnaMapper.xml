@@ -83,14 +83,14 @@
 	</update>
 	
 	
-		<delete id="delete" parameterType="QnaDTO">
-  		DELETE FROM "TB_QNA"
-  		WHERE "BOARD_NUM"=#{boardNum}
-  	</delete>
-  	
+	<delete id="delete" parameterType="QnaDTO">
+		DELETE FROM "TB_QNA"
+		WHERE "BOARD_NUM"=#{boardNum}
+	
+	</delete>
   	<delete id="fileDelete" parameterType="FileDTO">
   		DELETE FROM "TB_QNAFILE"
-  		WHERE "FILE_NO"=#{fileNum}
+  		WHERE "FILE_NO"=#{fileNo}
   	</delete>
   	
   	<delete id="fileDeleteFor" parameterType="java.util.List">

@@ -23,16 +23,27 @@
 				<div class="container-fluid">
 
 	                   <!-- Page Heading -->
-	                   <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-	                   <c:if test="${not empty member}">
-	                   	<h3>로그인 상태</h3>
-	                   </c:if>
+	                   <h1 class="h3 mb-4 text-gray-800">회원가입페이지</h1>
 	                   
-	                   <c:if test="${empty member}">
+	                   <form action="./login" method="post" enctype="multipart/form-data">
+						  <div class="form-group">
+						    <label for="username">ID</label>
+						    <input type="text" name="username" class="form-control" id="username" >
+						  </div>
+						  					 
+						  <div class="form-group">
+						    <label for="password">비밀번호</label>
+						    <input type="password" name="password" class="form-control" id="password" >
+						    
+						  </div>
+						  
+						  				  					  
+						  <button type="submit" class="btn btn-primary">Submit</button>
+						</form>
 	                   
-	                   <h3>비 로그인 상태</h3>
-	                   </c:if>
-						
+	                   
+	                   
+
                 </div>
                 <!-- End Page container-fluid -->
 			</div>

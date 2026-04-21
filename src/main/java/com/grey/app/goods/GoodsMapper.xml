@@ -47,6 +47,27 @@
 	
    </insert>
   
+  <select id="detail" parameterType="GoodsDTO" resultMap="detailResult">
+		SELECT *
+		FROM "TB_GOODS" n
+			LEFT JOIN "TB_GOODSFILE" f
+			USING ("GOODS_NO")
+			WHERE "GOODS_NO"=#{goodsNo}
+	</select>
+	
+	<resultMap type="GoodsDTO" id="detailResult">
+		<id column="GOODS_NO" property="goodsNo"/>
+		<result column="GOODS_NAME" property="goodsName"/>
+		<result column="GOODSCONTENT" property="goodsContent"/>
+		<result column="GOODS_CATEGORY" property="goodsCategory"/>
+		<result column="GOODS_RATE" property="goodsRate"/>
+		
+		<association property="goodsfileDTO" javaType="GoodsFileDTO">
+			<id column="FILE_NO" property="fileNo"/>
+			<result column="FILE_NAME" property="fileName"/>
+			<result column="ORI_NAME" property="oriName"/>
+		</association>
+	</resultMap>
   
   
   

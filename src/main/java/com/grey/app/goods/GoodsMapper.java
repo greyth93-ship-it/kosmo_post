@@ -16,4 +16,6 @@ public interface GoodsMapper {
 	public List<GoodsDTO> list(Pager pager) throws Exception;
 	
 	public int create(GoodsDTO goodsDTO) throws Exception;
+	
+	public GoodsDTO detail(GoodsDTO goodsDTO) throws Exception;
 }

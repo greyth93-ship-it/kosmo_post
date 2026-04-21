@@ -43,6 +43,11 @@ public class GoodsController {
 		return "redirect:./list";
 	}
 	
-	
+	@GetMapping("detail")
+	public String detail(GoodsDTO goodsDTO, Model model) throws Exception {
+		goodsDTO = goodsService.detail(goodsDTO);
+		model.addAttribute("dto", goodsDTO);
+		return "goods/detail";
+	}
 
 }

@@ -17,5 +17,5 @@ public class GoodsDTO {
 	private String goodsCategory;
 	private Double goodsRate;
 	
-	
+	private GoodsFileDTO goodsfileDTO;
 }

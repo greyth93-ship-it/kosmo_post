@@ -15,5 +15,5 @@ public class QnaDTO extends BoardDTO {
 	private Long boardStep;
 	private Long boardDepth;
 	
-	
+	private QnaFileDTO qnafileDTO;
 }
