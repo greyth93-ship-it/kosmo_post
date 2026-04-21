@@ -3,7 +3,7 @@ package com.grey.app.file;
 import java.io.File;
 import java.util.UUID;
 
-import com.grey.app.board.notice.NoticeService;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
@@ -35,13 +35,13 @@ public class FileManager {
 		}
 		
 		// 2. 파일명?
-		String filename = UUID.randomUUID().toString();
+		String fileName = UUID.randomUUID().toString();
 		
 		
 		// 3. 확장자?
-		filename = filename + "_" + mf.getOriginalFilename();
+		fileName = fileName + "_" + mf.getOriginalFilename();
 		
-		file = new File(file, filename);
+		file = new File(file, fileName);
 		
 		// 4. 저장
 		// 4-1.MultipartFile의 transferTo 메서드
@@ -50,6 +50,6 @@ public class FileManager {
 		// 4-2. FileCopyUtils의 copy 메서드
 		FileCopyUtils.copy(mf.getBytes(), file);
 		
-		return filename;
+		return fileName;
 	}
 }

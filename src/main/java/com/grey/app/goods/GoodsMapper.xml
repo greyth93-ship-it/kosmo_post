@@ -20,16 +20,16 @@
   		<include refid="search_sql"></include>
   	</select>
   
-  	<select id="list" resultType="GoodsDTO" parameterType="Pager">
-  		SELECT * FROM "TB_GOODS"
+  	<select id="list" resultMap="joinResult" parameterType="Pager">
+  		SELECT * FROM "TB_GOODS" g
+  		LEFT JOIN "TB_GOODSFILE" gf
+  		USING ("GOODS_NO")
   		<include refid="search_sql"></include>
   		ORDER BY "GOODS_NO" DESC
   		Limit #{perPage} OFFSET #{startNum}
-  		
-  		
   	</select>
-  
-  	<insert id="create" parameterType="GoodsDTO" >
+  	
+  	<insert id="create" parameterType="GoodsDTO" useGeneratedKeys="true" keyProperty="goodsNo">
   		INSERT INTO "TB_GOODS"
 		VALUES (
 			DEFAULT,
@@ -38,16 +38,15 @@
 			#{goodsCategory},
 			#{goodsRate}
 		)
-  	
   	</insert>
   
-   <insert id="createFile" parameterType="GoodsDTO">
+   <insert id="createFile" parameterType="GoodsFileDTO">
    		INSERT INTO "TB_GOODSFILE"
 		VALUES (DEFAULT, #{fileName}, #{oriName}, #{goodsNo})
 	
    </insert>
   
-  <select id="detail" parameterType="GoodsDTO" resultMap="detailResult">
+  <select id="detail" parameterType="GoodsDTO" resultMap="joinResult">
 		SELECT *
 		FROM "TB_GOODS" n
 			LEFT JOIN "TB_GOODSFILE" f
@@ -55,7 +54,7 @@
 			WHERE "GOODS_NO"=#{goodsNo}
 	</select>
 	
-	<resultMap type="GoodsDTO" id="detailResult">
+	<resultMap type="GoodsDTO" id="joinResult">
 		<id column="GOODS_NO" property="goodsNo"/>
 		<result column="GOODS_NAME" property="goodsName"/>
 		<result column="GOODSCONTENT" property="goodsContent"/>

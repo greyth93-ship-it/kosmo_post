@@ -22,6 +22,10 @@ public class QnaService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	
+	@Value("${app.upload.base}")
+	private String base;
+	
+	
 	@Value("${app.board.qna}")
 	private String name;
 
@@ -52,11 +56,11 @@ public class QnaService implements BoardService {
 			if(f.isEmpty()) {
 				continue;
 			}
-			String filename = fileManager.fileSave(name, f);
+			String fileName = fileManager.fileSave(name, f);
 			
 			QnaFileDTO qnaFileDTO = new QnaFileDTO();
 			qnaFileDTO.setBoardNum(boardDTO.getBoardNum());
-			qnaFileDTO.setFileName(filename);
+			qnaFileDTO.setFileName(fileName);
 			qnaFileDTO.setOriName(f.getOriginalFilename());
 			
 			result = qnaMapper.createFile(qnaFileDTO);

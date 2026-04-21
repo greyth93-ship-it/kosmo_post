@@ -23,14 +23,12 @@
                     <div>
                     	<h3>${dto.goodsName}</h3>
                     	<h3>${dto.goodsContent}</h3>
-                    	<div>
-                    		${dto.goodsCategory}
-                    	</div>
+                    	<h3>${dto.goodsCategory}</h3>
+                    	
+                    	<a href="../account/create?goodsNo=${dto.goodsNo}" class="btn btn-primary">상품가입</a>
                     	
                     	<div>
-						
-							<img src="/files/${name}/${filename}">
-							                   	
+						        	
                     	</div>
                     	
                     </div>

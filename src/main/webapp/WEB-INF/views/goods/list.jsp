@@ -45,7 +45,25 @@
 							</form>
                     		
                     	</div>
-                    
+                    	
+                    	<div class="row">
+                    	<c:forEach items="${list}" var="p">
+                    	<div class="col-4">
+                    	<div class="card" style="width: 18rem;">
+						  <img src="/files/${name}/${p.goodsfileDTO.fileName}" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">${p.goodsName}</h5>
+						    
+						    <a href="./detail?goodsNo=${p.goodsNo}" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+                    	</div>
+                    	
+                    	
+                    	
+                    	</c:forEach>
+                    	</div>
+                    <!--  
                     	<table class="table table-hover">
                     		<thead class="table-secondary">
                     			<tr>
@@ -67,7 +85,7 @@
 		                    	</c:forEach>
                     		</tbody>
                     	</table>
-                    	
+                    	-->
                     	<div>
                     	<nav aria-label="Page navigation example">
 						  <ul class="pagination">
@@ -92,7 +110,7 @@
                     	</div>
                     	
                     	<div>
-                    		<a href="./create">상품 등록</a>
+                    		<a href="./create" class="btn btn-danger">상품 등록</a>
                     	</div>
                     	
                     </div>
