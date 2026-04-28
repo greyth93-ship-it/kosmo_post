@@ -21,6 +21,11 @@ public class MemberServiceImpl implements MemberService {
 	@Value("${app.member}")
 	private String name;
 
+	@Override
+	public MemberDTO idCheck(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberMapper.detail(memberDTO);
+	}
     
 	
 	@Override
@@ -61,4 +66,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return null;
 	}
+
 }

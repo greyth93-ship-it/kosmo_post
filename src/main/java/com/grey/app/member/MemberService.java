@@ -8,4 +8,5 @@ public interface MemberService {
 	
 	public MemberDTO detail(MemberDTO memberDTO) throws Exception;
 
+	public MemberDTO idCheck(MemberDTO memberDTO) throws Exception;
 }

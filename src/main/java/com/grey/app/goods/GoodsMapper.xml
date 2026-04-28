@@ -57,7 +57,7 @@
 	<resultMap type="GoodsDTO" id="joinResult">
 		<id column="GOODS_NO" property="goodsNo"/>
 		<result column="GOODS_NAME" property="goodsName"/>
-		<result column="GOODSCONTENT" property="goodsContent"/>
+		<result column="GOODS_CONTENT" property="goodsContent"/>
 		<result column="GOODS_CATEGORY" property="goodsCategory"/>
 		<result column="GOODS_RATE" property="goodsRate"/>
 		

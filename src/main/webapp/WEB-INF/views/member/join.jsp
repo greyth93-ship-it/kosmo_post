@@ -29,31 +29,37 @@
 						  <div class="form-group">
 						    <label for="username">ID</label>
 						    <input type="text" name="username" class="form-control" id="username" >
+							<span id="usernameError" ></span>
 						  </div>
 						  <div class="form-group">
 						    <label for="name">이름</label>
 						    <input type="text" name="name" class="form-control" id="name" >
+							<span id="nameError" ></span>
 						  </div>						 
 						  <div class="form-group">
 						    <label for="password">비밀번호</label>
 						    <input type="password" name="password" class="form-control" id="password" >
-						    
+							<span id="passwordError" ></span>
+						  </div>
+						  <div class="form-group">
+						    <input type="password" name="password" placeholder="비밀번호 확인" class="form-control" id="passwordCheck" >
+							<span id="passwordCheckError" ></span>
 						  </div>
 						  
 						<div class="form-group">
 						    <label for="phone">전화번호</label>
 						    <input type="tel" name="phone" class="form-control" id="phone" >
-						    
+							<span id="phoneError"></span>
 						  </div>
 						  <div class="form-group">
 						    <label for="email">이메일</label>
 						     <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com">
-						    
+						    <span id="emailError"></span>
 						  </div>
 						  <div class="form-group">
 						    <label for="birth">생일</label>
 						    <input type="date" name="birth" class="form-control" id="birth">
-						   
+						   <span id="birthError"></span>
 						    
 						  </div>
 						  
@@ -63,7 +69,7 @@
 
 						  </div>
 						  				  					  
-						  <button type="submit" class="btn btn-primary">Submit</button>
+						  <button type="button" class="btn btn-primary" id="btn">Submit</button>
 						</form>
 	                   
 	                   
@@ -79,5 +85,6 @@
 	</div>
 	<!-- End wrapper -->
 	<c:import url="/WEB-INF/views/temp/footer_script.jsp"></c:import>
+	<script src="/js/member/join.js"></script>
 </body>
 </html>

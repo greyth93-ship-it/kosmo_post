@@ -9,8 +9,6 @@
 	<c:import url="/WEB-INF/views/temp/head_css.jsp"></c:import>
 	
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
-   
-	
 </head>
 <body id="page-top">
 	<div id="wrapper">
@@ -41,13 +39,16 @@
 						    
 						  </div>
 						  
-						  <div class="form-group">
+						  <div>
+							<button type="button" id="add">File Add</button>
+						  </div>
+
+						  <div class="form-group" id="result">
 						  	<label>첨부파일</label>
-						  	<input type="file" name="attach" class="form-control">
-						  	<input type="file" name="attach" class="form-control">
+						  	
 						  </div>
 						  				  					  
-						  <button type="submit" class="btn btn-primary">Submit</button>
+						  <button id="create" type="submit" class="btn btn-primary">Submit</button>
 						</form>
                     	
                     
@@ -74,6 +75,8 @@
         height: 100
       });
     </script>
+
+	<script src="/js/board/form.js"></script>
 
 </body>
 </html>
