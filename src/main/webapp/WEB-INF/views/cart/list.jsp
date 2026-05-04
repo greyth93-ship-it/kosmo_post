@@ -12,36 +12,26 @@
 <body id="page-top">
 	<div id="wrapper">
 		<c:import url="/WEB-INF/views/temp/sidebar.jsp"></c:import>
-		
 		<div id="content-wrapper" class="d-flex flex-column">
-		
 			<div id="content">
-			
 				<c:import url="/WEB-INF/views/temp/topbar.jsp"></c:import>
-					
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-
-	                   <!-- Page Heading -->
-	                   <h1 class="h3 mb-4 text-gray-800">로그인페이지</h1>
-	                   
-	                   <form action="./login" method="post" enctype="multipart/form-data">
-						  <div class="form-group">
-						    <label for="username">ID</label>
-						    <input type="text" value="aa" name="username" class="form-control" id="username" >
-						  </div>
-						  					 
-						  <div class="form-group">
-						    <label for="password">비밀번호</label>
-						    <input type="password" value="aa" name="password" class="form-control" id="password" >
-						    
-						  </div>
-						  
-						  				  					  
-						  <button type="submit" class="btn btn-primary">Submit</button>
-						</form>
+	            	<!-- Page Heading -->
+	                <h1 class="h3 mb-4 text-gray-800">Cart Page</h1>
+	                <div class="row">
+	                   	<div>
+	                   	<input type="checkbox" id="total">
+	                   		<button type="submit" class="btn btn-primary">Submit</button>
+	                   		<button type="submit" class="btn btn-danger"id="del">선택삭제</button>
+	                   		
+	                   	</div>
+	                </div>
+	                
+	                   <div id="list">
 	                   
 	                   
+	                   </div>
 	                   
 
                 </div>
@@ -54,5 +44,6 @@
 	</div>
 	<!-- End wrapper -->
 	<c:import url="/WEB-INF/views/temp/footer_script.jsp"></c:import>
+	<script src="/js/cart/list.js"></script>
 </body>
 </html>

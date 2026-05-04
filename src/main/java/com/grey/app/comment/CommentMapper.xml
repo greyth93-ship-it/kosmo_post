@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.grey.app.comment.CommentMapper">
+	<insert id="create" parameterType="CommentDTO">
+  		INSERT INTO "TB_COMMENT"
+  		VALUES (
+  		default,
+  		#{commentContent},
+  		#{commentStar},
+  		now(),
+  		#{goodsNo},
+  		#{username}
+  		)
+  	</insert>
+  
+  	<select id="list" parameterType="CommentDTO" resultType="commentDTO">
+  		SELECT *
+  		FROM "TB_COMMENT" 
+  		<!-- LEFT JOIN "TB_MEMBER" m USING ("USERNAME")
+  		LEFT JOIN "TB_GOODS" g ("GOODS_NO") -->
+  		WHERE "GOODS_NO"=#{goodsNo}
+  		ORDER BY "COMMENT_NO" DESC
+  	</select>
+  
+	<!-- <resultMap type="CommentDTO" id="joinResult">
+		<id column="COMMENT_NO" property="commentNo"/>
+		<result column="COMMENT_CONTENT" property="commentContent" />
+		<result column="COMMENT_STAR" property="commentStar" />
+		<result column="COMMENT_DATE" property="commentDate" />
+		<association property="goodsDTO" javaType="GoodsDTO">
+			<id column="GOODS_NO" property="goodsNo"/>
+			<result column="GOODS_NAME" property="goodsName"/>
+			<result column="GOODS_CONTENT" property="goodsContent"/>
+			<result column="GOODS_CATEGORY" property="goodsCategory"/>
+			<result column="GOODS_RATE" property="goodsRate"/>
+		</association>
+		<association property="memberDTO" javaType="MemberDTO">
+			<id column="USERNAME" property="username"/>
+			<result column="PASSWORD" property="password"/>
+			<result column="PHONE" property="phone"/>
+			<result column="EMAIL" property="email"/>
+			<result column="Birth" property="birth"/>
+		</association>
+	</resultMap> -->
+  
+  <delete id="delete" parameterType="CommentDTO">
+  	DELETE FROM "TB_COMMENT"
+  	WHERE "COMMENT_NO"=#{commentNo}
+  </delete>
+  
+  <update id="update" parameterType="CommentDTO">
+  	UPDATE "TB_COMMENT"
+  	SET "COMMENT_CONTENT" = #{commentContent}
+  	WHERE "COMMENT_NO"=#{commentNo}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </mapper>

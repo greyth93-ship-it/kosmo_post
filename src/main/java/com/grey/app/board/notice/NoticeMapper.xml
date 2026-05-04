@@ -54,6 +54,8 @@
 			WHERE "BOARD_NUM"=#{boardNum}
 	</select>
 	
+	
+	
 	<resultMap type="NoticeDTO" id="detailResult">
 		<id column="BOARD_NUM" property="boardNum"/>
 		<result column="BOARD_TITLE" property="boardTitle"/>
@@ -64,7 +66,7 @@
 		<result column="BOARD_DATE" property="boardDate"/>
 		
 		<collection property="list" javaType="java.util.List" ofType="FileDTO">
-			<id column="FILE_NUM" property="fileNUM"/>
+			<id column="FILE_NO" property="fileNo"/>
 			<result column="FILE_NAME" property="fileName"/>
 			<result column="ORI_NAME" property="oriName"/>
 			
@@ -84,6 +86,12 @@
 		WHERE "BOARD_NUM"=#{boardNum}
 	
 	</delete>
+	
+	<select id="fileDetail" parameterType="FileDTO" resultType="FileDTO">
+		SELECT *
+		FROM "TB_NOTICEFILE"
+		WHERE "FILE_NO"=#{fileNo}
+	</select>
 	
 
 </mapper>

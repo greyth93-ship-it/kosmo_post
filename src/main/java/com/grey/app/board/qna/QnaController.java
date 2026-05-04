@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.grey.app.board.BoardDTO;
 import com.grey.app.board.notice.NoticeDTO;
+import com.grey.app.board.notice.NoticeFileDTO;
+import com.grey.app.file.FileDTO;
 import com.grey.app.pager.Pager;
 
 @Controller
@@ -41,6 +43,18 @@ public class QnaController {
 		
 		return "board/list";
 	}
+	
+	@GetMapping("down")
+	public String fileDown(QnaFileDTO qnaFileDTO, Model model) throws Exception{
+		
+		FileDTO fileDTO = qnaService.fileDetail(qnaFileDTO);
+		
+		model.addAttribute("fileDTO",fileDTO);
+		
+		return "fileDownView";
+		
+	}
+	
 	
 	@GetMapping("detail")
 	public String detail(QnaDTO qnaDTO, Model model) throws Exception {

@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.grey.app.board.BoardDTO;
+import com.grey.app.file.FileDTO;
+import com.grey.app.member.MemberDTO;
 import com.grey.app.pager.Pager;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -47,6 +51,16 @@ public class NoticeController {
 		return "board/list";
 	}
 	
+	@GetMapping("down")
+	public String fileDown(NoticeFileDTO noticeFileDTO, Model model) throws Exception{
+		
+		FileDTO fileDTO = noticeService.fileDetail(noticeFileDTO);
+		
+		model.addAttribute("fileDTO",fileDTO);
+		
+		return "fileDownView";
+		
+	}
 	
 	
 	@GetMapping("detail")
@@ -90,18 +104,36 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update")
-	public String update(NoticeDTO noticeDTO, @RequestParam("attach") MultipartFile [] attach) throws Exception {
+	public ModelAndView update(NoticeDTO noticeDTO, @RequestParam("attach") MultipartFile [] attach, Model model) throws Exception {
 		int result = noticeService.update(noticeDTO, attach);
 		
-		return "redirect:./list";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:./list");
+		mv.addObject("dto",noticeDTO);
+		
+		return mv;
 	}
 	
 	
 	
 	@PostMapping("delete")
-	public String delete(NoticeDTO noticeDTO) throws Exception{
-	
-		int result = noticeService.delete(noticeDTO);
-		return "redirect:./list";
+	public String delete(NoticeDTO noticeDTO,HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		BoardDTO boardDTO = noticeService.detail(noticeDTO);
+		if(boardDTO.getBoardWriter().equals(memberDTO.getUsername())) {
+			int result = noticeService.delete(noticeDTO);
+			return "redirect:./list";
+			
+			
+		} else {
+			model.addAttribute("result","작성자 아님");
+			model.addAttribute("url","./list");
+			return "commons/result";
+		}
+		
+		
+		
+		
+		
 	}
 }

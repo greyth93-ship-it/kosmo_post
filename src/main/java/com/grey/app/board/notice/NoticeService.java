@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -15,6 +16,7 @@ import com.grey.app.file.FileManager;
 import com.grey.app.pager.Pager;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class NoticeService implements BoardService {
 	
 	@Autowired
@@ -31,16 +33,23 @@ public class NoticeService implements BoardService {
 		pager.makePageNum(noticeMapper.getCount(pager));
 		pager.makeStartNum();
 		
-		
 		return noticeMapper.list(pager);
 	}
 
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.fileDetail(fileDTO);
+	}
+	
+	
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return noticeMapper.detail(boardDTO);
 	}
 
+	
 	@Override
 	public int create(BoardDTO boardDTO, MultipartFile [] attach) throws Exception {
 		// 1. 게시판 테이블에 글을 등록

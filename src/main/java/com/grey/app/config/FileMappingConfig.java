@@ -14,15 +14,12 @@ public class FileMappingConfig implements WebMvcConfigurer {
 		@Value("${app.upload.path}")
 		private String path;
 	
-		
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			
 			registry
 			.addResourceHandler(url)
 			.addResourceLocations(path);
-	
-		
 		
 		}
 }
