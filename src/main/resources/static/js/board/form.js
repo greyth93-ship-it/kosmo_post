@@ -3,6 +3,7 @@ const add = document.getElementById("add");
 const result = document.getElementById("result");
 const create = document.getElementById("create");
 
+
 // create.addEventListener("click", ()=>{
 //     let form = new FormData();
 //     form.append("boardTitle","ajax title");
@@ -16,11 +17,14 @@ const create = document.getElementById("create");
 //     .then(res=>console.log(res));
 // })
 
-let idx = 1;
+let idx = result.getAttribute("data-file-size");
+if(idx==undefined){
+	idx=0;
+}
 
 add.addEventListener("click", function(){
 
-    if(result.childElementCount > 5){
+    if(idx > 4){
         alert("5개까지만 추가할 수 있어요");
         return;
     } 

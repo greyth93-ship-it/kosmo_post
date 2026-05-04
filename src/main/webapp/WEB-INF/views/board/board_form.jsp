@@ -9,8 +9,6 @@
 	<c:import url="/WEB-INF/views/temp/head_css.jsp"></c:import>
 	
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
-   
-	
 </head>
 <body id="page-top">
 	<div id="wrapper">
@@ -26,7 +24,7 @@
                     <h1 class="h3 mb-4 text-gray-800">Create Page</h1>
                     
                     <div>
-	                    <form action="./update" method="post" enctype="multipart/form-data">
+	                    <form method="post" enctype="multipart/form-data">
 	                    	<input type="hidden" value="${dto.boardNum}" name="boardNum">
 						  <div class="form-group">
 						    <label for="title">제목</label>
@@ -34,21 +32,29 @@
 						  </div>
 						  <div class="form-group">
 						    <label for="writer">작성자</label>
-						    <input type="text" name="boardWriter" readonly value="${dto.boardWriter}" class="form-control" id="writer" >
+						    <input type="text" name="boardWriter" value="${dto.boardWriter}" class="form-control" id="writer" >
 						  </div>						 
 						  <div class="form-group">
 						    <label for="content">내용</label>
-						    <textarea rows="12" cols="" name="boardContent" class="form-control" id="content">${dto.boardContent}</textarea>
+						    <textarea rows="12" cols="" name="boardContent" value="${dto.boardContent}" class="form-control" id="content">${dto.boardContent}</textarea>
 						    
 						  </div>
 						  
-						  <div class="form-group">
+						  <div>
+							<button type="button" id="add">File Add</button>
+						  </div>
+
+						  <div class="form-group" id="result" data-file-size="${dto.list.size()}">
 						  	<label>첨부파일</label>
-						  	<input type="file" name="attach" class="form-control">
-						  	<input type="file" name="attach" class="form-control">
+						  	<c:forEach items="${dto.list}" var="f">
+						  		<div>
+						  			<span>${f.oriName}</span> <button type="button">X</button>
+						  		</div>
+						  	</c:forEach>
+						  	
 						  </div>
 						  				  					  
-						  <button type="submit" class="btn btn-primary">Submit</button>
+						  <button id="create" type="submit" class="btn btn-primary">Submit</button>
 						</form>
                     	
                     
@@ -75,6 +81,8 @@
         height: 100
       });
     </script>
+
+	<script src="/js/board/form.js"></script>
 
 </body>
 </html>

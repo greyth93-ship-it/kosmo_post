@@ -34,8 +34,8 @@
 						    <input type="text" name="boardWriter" class="form-control" id="writer" >
 						  </div>						 
 						  <div class="form-group">
-						    <label for="contents">내용</label>
-						    <textarea rows="12" cols="" name="boardContents" class="form-control" id="contents"></textarea>
+						    <label for="content">내용</label>
+						    <textarea rows="12" cols="" name="boardContent" class="form-control" id="content"></textarea>
 						    
 						  </div>
 						  
