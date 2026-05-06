@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,10 @@
 	                   <h3>비 로그인 상태</h3>
 	                   </c:if>
 	                   
-	                   <div id="map" style="width:500px;height:400px;">
+	                   <spring:message code="hi" text="code가 없을 때 출력하는 기본 메세지"></spring:message>
+	                   
+	                   
+	                   <div id="map" style="width:750px;height:600px;">
 	                   
 	                   
 	                   
@@ -63,7 +67,6 @@
 	};
 
 	let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	
 	</script>
 </body>
 </html>
