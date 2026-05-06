@@ -12,4 +12,6 @@ public interface MemberService {
 	public MemberDTO idCheck(MemberDTO memberDTO) throws Exception;
 	
 	public boolean doubleCheck(MemberDTO memberDTO, BindingResult bindingResult) throws Exception;
+	
+	public int update(MemberDTO memberDTO) throws Exception;
 }

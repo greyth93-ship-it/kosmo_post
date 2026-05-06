@@ -22,6 +22,12 @@ public class MemberServiceImpl implements MemberService {
 	@Value("${app.member}")
 	private String name;
 	
+	@Override
+	public int update(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberMapper.update(memberDTO);
+	}
+	
 	// 사용자 정의 검증 메서드
 	public boolean doubleCheck(MemberDTO memberDTO, BindingResult bindingResult) throws Exception{
 		// false:검증통과 true:검증실패

@@ -12,4 +12,6 @@ public interface MemberMapper {
 	
 	public MemberDTO detail(MemberDTO memberDTO) throws Exception;
 	
+	public int update(MemberDTO memberDTO) throws Exception;
+	
 }
