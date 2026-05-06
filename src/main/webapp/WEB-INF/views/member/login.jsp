@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,23 +25,25 @@
 
 	                   <!-- Page Heading -->
 	                   <h1 class="h3 mb-4 text-gray-800">로그인페이지</h1>
-	                   
-	                   <form action="./login" method="post" enctype="multipart/form-data">
+	                   <div>
+	                   <form:form action="./login" modelAttribute="memberDTO" method="post" enctype="multipart/form-data">
 						  <div class="form-group">
-						    <label for="username">ID</label>
-						    <input type="text" value="aa" name="username" class="form-control" id="username" >
-						  </div>
-						  					 
-						  <div class="form-group">
-						    <label for="password">비밀번호</label>
-						    <input type="password" value="aa" name="password" class="form-control" id="password" >
+						  	<label for="password">ID</label>
+						    <form:input path="username" cssClass="form-control" id="username"/>
+						    <form:errors path="username"></form:errors>
 						    
 						  </div>
 						  
-						  				  					  
-						  <button type="submit" class="btn btn-primary">Submit</button>
-						</form>
+						  <div class="form-group">
+						    <label for="password">비밀번호</label>
+						    <form:password path="password" cssClass="form-control" id="password"/>
+						   <form:errors path="password"></form:errors>
+						  </div>
+						  
+						  <button type="submit" class="btn btn-primary">Login</button>
+	                   </form:form>
 	                   
+	                   </div>
 	                   
 	                   
 

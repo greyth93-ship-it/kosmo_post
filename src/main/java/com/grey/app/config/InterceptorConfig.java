@@ -42,7 +42,6 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/notice/update","/qna/update")
 				;
 		
-		
 		registry.addInterceptor(localeChangeInterceptor)
 				.addPathPatterns("/**")
 				;

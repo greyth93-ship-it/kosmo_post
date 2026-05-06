@@ -1,5 +1,6 @@
 package com.grey.app.member;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface MemberService {
@@ -9,4 +10,6 @@ public interface MemberService {
 	public MemberDTO detail(MemberDTO memberDTO) throws Exception;
 
 	public MemberDTO idCheck(MemberDTO memberDTO) throws Exception;
+	
+	public boolean doubleCheck(MemberDTO memberDTO, BindingResult bindingResult) throws Exception;
 }

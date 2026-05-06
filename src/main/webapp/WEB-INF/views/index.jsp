@@ -24,9 +24,11 @@
 				<div class="container-fluid">
 
 	                   <!-- Page Heading -->
-	                   <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+	                   <h1 class="h3 mb-4 text-gray-800">Index Page</h1>
 	                   <c:if test="${not empty member}">
 	                   	<h3>로그인 상태</h3>
+	                   	<spring:message code="welcome.login" arguments="${member.username}, ${member.birth}" argumentSeparator=","></spring:message>
+	                   	
 	                   </c:if>
 	                   
 	                   <c:if test="${empty member}">
@@ -34,10 +36,12 @@
 	                   <h3>비 로그인 상태</h3>
 	                   </c:if>
 	                   
-	                   <spring:message code="hi" text="code가 없을 때 출력하는 기본 메세지"></spring:message>
+	                   <spring:message code="hi" text="code가 없을 때 출력하는 기본 메세지" var="m"></spring:message>
 	                   
 	                   
-	                   <div id="map" style="width:750px;height:600px;">
+	                   ${m}, ${m}
+	                   
+	                   <div id="map" style="width:500px;height:400px;">
 	                   
 	                   
 	                   
