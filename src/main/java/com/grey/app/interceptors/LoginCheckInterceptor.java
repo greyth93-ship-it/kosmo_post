@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 @Component
 public class LoginCheckInterceptor implements HandlerInterceptor{
 

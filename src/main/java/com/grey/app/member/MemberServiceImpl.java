@@ -1,15 +1,23 @@
 package com.grey.app.member;
 
+import org.springframework.aop.framework.adapter.ThrowsAdviceInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.grey.app.file.FileManager;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
-public class MemberServiceImpl implements MemberService {
+@Slf4j
+public class MemberServiceImpl implements MemberService, UserDetailsService {
 
     
 
@@ -21,6 +29,21 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Value("${app.member}")
 	private String name;
+	
+	@Autowired
+	private PasswordEncoder encoder;
+	
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println(username);
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUsername(username);
+		memberDTO = memberMapper.detail(memberDTO);
+		log.info("{}",memberDTO);
+		return memberDTO;
+	}
+
 	
 	@Override
 	public int update(MemberDTO memberDTO) throws Exception {
@@ -63,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int join(MemberDTO memberDTO, MultipartFile file) throws Exception {
-		
+		memberDTO.setPassword(encoder.encode(memberDTO.getPassword()));
 		// DB에 저장
 		int result = memberMapper.join(memberDTO);
 		

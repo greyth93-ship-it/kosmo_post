@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,7 @@
 		                    			<td>${d.boardDate}</td>
 		                    			<td>${d.boardHit}</td>
 		                    			
-<%-- 		                    			<c:if test="${d.openYn ne 'Y'}">
+										<%-- <c:if test="${d.openYn ne 'Y'}">
 		                    			<td>OPEN</td>
 		                    			</c:if>
 		                    			<c:if test="${d.openYn eq 'N'}">
@@ -105,11 +106,20 @@
                     	
                     	
                     	</div>
-                    	
+                    	<c:if test="${name eq 'notice'}">
+                    	<sec:authorize access="hasRole('ADMIN')">
                     	<div>
-                    		<a href="./create">공지 등록</a>
+                    		<a href="./create">등록</a>
                     	</div>
-                    	
+                    	</sec:authorize>
+                    	</c:if>
+                    	<c:if test="${name ne 'notice'}">
+                    	<sec:authorize access="hasRole('MEMBER')">
+                    	<div>
+                    		<a href="./create">등록</a>
+                    	</div>
+                    	</sec:authorize>
+                    	</c:if>
                     </div>
                     </div>
                     <!-- 테이블 DIV 끝 -->

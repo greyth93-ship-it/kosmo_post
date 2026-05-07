@@ -26,22 +26,22 @@
 	                   <!-- Page Heading -->
 	                   <h1 class="h3 mb-4 text-gray-800">로그인페이지</h1>
 	                   <div>
-	                   <form:form action="./login" modelAttribute="memberDTO" method="post" enctype="multipart/form-data">
+	                   <form action="./login" method="post" enctype="multipart/form-data">
 						  <div class="form-group">
 						  	<label for="password">ID</label>
-						    <form:input path="username" cssClass="form-control" id="username"/>
-						    <form:errors path="username"></form:errors>
+						    <input type="text" name="username" class="form-control" id="username"/>
+						    
 						    
 						  </div>
 						  
 						  <div class="form-group">
 						    <label for="password">비밀번호</label>
-						    <form:password path="password" cssClass="form-control" id="password"/>
-						   <form:errors path="password"></form:errors>
+						    <input type="password" name="password" class="form-control" id="password"/>
+						   
 						  </div>
 						  
 						  <button type="submit" class="btn btn-primary">Login</button>
-	                   </form:form>
+	                   </form>
 	                   
 	                   </div>
 	                   

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,32 +26,26 @@
 
 	                   <!-- Page Heading -->
 	                   <h1 class="h3 mb-4 text-gray-800">Index Page</h1>
-	                   <c:if test="${not empty member}">
+	                   
+	                   <sec:authorize access="isAuthenticated()">
 	                   	<h3>로그인 상태</h3>
 	                   	<spring:message code="welcome.login" arguments="${member.username}, ${member.birth}" argumentSeparator=","></spring:message>
-	                   	
-	                   </c:if>
+	                   	</sec:authorize>
 	                   
-	                   <c:if test="${empty member}">
-	                   
+	                   <sec:authorize access="!isAuthenticated()">
 	                   <h3>비 로그인 상태</h3>
-	                   </c:if>
+	                   </sec:authorize>
+	                   
 	                   
 	                   <spring:message code="hi" text="code가 없을 때 출력하는 기본 메세지" var="m"></spring:message>
-	                   
-	                   
+						
 	                   ${m}, ${m}
 	                   
 	                   <div id="map" style="width:500px;height:400px;">
 	                   
 	                   
-	                   
+	             
 	                   </div>
-	                   
-	                   
-	                   
-	                   
-						
                 </div>
                 <!-- End Page container-fluid -->
 			</div>
